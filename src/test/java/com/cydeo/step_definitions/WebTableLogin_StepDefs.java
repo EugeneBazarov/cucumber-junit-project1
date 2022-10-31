@@ -1,5 +1,6 @@
 package com.cydeo.step_definitions;
 
+import com.cydeo.pages.BasePage;
 import com.cydeo.pages.WebTableLoginPage;
 import com.cydeo.utilities.ConfigurationReader;
 import com.cydeo.utilities.Driver;
@@ -11,10 +12,13 @@ import org.junit.Assert;
 public class WebTableLogin_StepDefs {
 
     WebTableLoginPage webTableLoginPage = new WebTableLoginPage();
+    BasePage basePage = new BasePage();
 
     @Given("user is on the login page of web table app")
     public void user_is_on_the_login_page_of_web_table_app() {
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
+        webTableLoginPage.login(ConfigurationReader.getProperty("username"),ConfigurationReader.getProperty("password"));
+        basePage.orderButtonNavItem.click();
     }
 
     @When("user enters username {string}")
